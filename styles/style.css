@@ -257,12 +257,23 @@ aside.mini-cart .body {
 }
 aside.mini-cart .body .item-wrap {
   display: flex;
-  border-bottom: 1px solid silver;
-  padding-bottom: 15px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+
+}
+
+aside.mini-cart .body .item-wrap div:nth-child(2){
+  margin-left: 2%;
+}
+
+.item-wrap div:nth-child(2) h3{
+  font-size: 1.1rem;
+  margin-bottom: 1%;
+  margin-top: 3%;
+  font-weight: 600;
 }
 aside.mini-cart .body .item-wrap .img {
-  width: 200px;
+  width: 150px;
   height: 180px;
   background-color: #e3e3e3;
   border-radius: 5px;
@@ -283,6 +294,38 @@ main.cart-page .table-wrap {
   vertical-align: top;
   margin-bottom: 30px;
 }
+
+div.additional_items{
+  display: grid;
+  grid-template-columns: 95% 5%;
+  border-bottom: 1px solid silver;
+  background: silver;
+  padding:17px;
+  margin-top: 1%;
+  color: #002b5c;
+  margin-bottom: 3%;;
+}
+
+div.additional_items p{
+  margin: 0px;
+}
+
+div.additional_items + div.info > p{
+  border-top: 7px solid green;
+  font-size: 0.8rem;
+}
+
+div.additional_items + div.info{
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+div.quantity{
+  margin-top: 2%; 
+}
+
 @media screen and (max-width: 900px) {
   main.cart-page .table-wrap {
     width: 100%;
@@ -413,4 +456,8 @@ main.cart-page table.summary td {
 
 .homenav{
   margin-left: 100px;
+}
+
+div.info + div.button-set{
+  margin-top: 5%;
 }

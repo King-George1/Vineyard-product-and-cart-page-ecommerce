@@ -169,9 +169,13 @@ main {
 .prod-details-wrap .color-picker .cl:hover {
   border-color: wheat;
 }
-.prod-details-wrap .color-picker .cl.active {
+
+div.color-picker > span.cl:nth-child(3){
   border-color: #002b5c;
 }
+/* .prod-details-wrap .color-picker .cl:active {
+  border-color: #002b5c;
+} */
 .prod-details-wrap .size-picker {
   margin-top: 2rem;
 }
@@ -239,6 +243,11 @@ aside.mini-cart {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: right ease-out 300ms;
   z-index: 10;
+}
+
+aside.mini-cart div>p:nth-child(2):hover{
+  cursor: pointer;
+  color: red;
 }
 aside.mini-cart.show {
   right: 0;

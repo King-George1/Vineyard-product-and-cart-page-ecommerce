@@ -7,7 +7,9 @@ let quantity = 1;
     color = 'Flats Blue',
     product_name = 'BeachWood Hoodie',
     price = 128.00,
-    product_imageUrl = 'url(imgs/flat_blue0.jpg)';
+    product_imageUrl = 'url(imgs/flat_blue0.jpg)',
+    productID = 'PROD-1';
+    
 
     //Event Handler for mouse hover
 let colorArray = Array.from(document.querySelectorAll('.cl'));
@@ -66,6 +68,7 @@ const selectAndChangeImages = (selector, targeted, clickedEvent) => {
         changeImagesUrl(products[0], clickedEvent);
         product_name = products[1];
         price = products[2]['amount'];
+        productID = products[3];
         
     });
 }
@@ -121,6 +124,8 @@ document.getElementById('add-to-cart-btn').addEventListener('click', ()=>{
     }else{
         document.querySelector('aside.mini-cart').classList.add('show');
         loadMiniCart();
+        updateCart();
+
     }
     
 });
@@ -138,8 +143,9 @@ async function fetchData(url, color){
         const productName = data.name;
         const cost = data.price;
         const products = data.colors;
+        const productID = data.id;
         let singleProduct = products.filter(product => product.text === color );
-        return [singleProduct,productName,cost];
+        return [singleProduct,productName,cost,productID];
     }
     catch(error){
         console.log(error);
@@ -169,4 +175,42 @@ const loadMiniCart = () => {
     document.querySelector('aside.mini-cart div.totalCostPrice span').innerHTML = quantity * price;
     
 }
+
+const updateCart = () => {
+    let cartProduct = {
+        productName: product_name,
+        productStyle: productID,
+        productColor: color,
+        productPrice: price,
+        productSize: size,
+        productQuantity: quantity
+    }
+    let cartStorage = [];
+    if(localStorage.getItem('myCart') !== null){
+        cartStorage = JSON.parse(localStorage.getItem('myCart'));
+    }
+
+    let result = cartStorage.findIndex(x => {
+        return ((x.productName === cartProduct.productName) &&
+                (x.productStyle === cartProduct.productStyle) && 
+                (x.productColor === cartProduct.productColor) && 
+                (x.productSize === cartProduct.productSize));
+        
+    });
+    if(result > -1){
+        //Update product quantity
+        cartStorage[result].productQuantity += cartProduct.productQuantity;
+    }
+    else{
+        cartStorage.push(cartProduct);
+    }
+    document.querySelector('div.additional_items > p > span.numberOfItems').innerHTML = cartStorage.length;
+    localStorage['myCart'] = JSON.stringify(cartStorage);
+        
+}   
+
+    
+  
+
+
 

@@ -10,9 +10,9 @@
 </head>
 <body>
     <header>
-        <nav></nav>
+        
         <div class="cart" style="font-size: 1.5em">
-            👜 (<span id="cart-count">0</span>)
+            👜 (<span class="cart-count">0</span>)
         </div>
     </header>
     <div class="container">
@@ -26,8 +26,9 @@
                 <div>QUANTITY & UNIT PRICE</div>
                 <div>TOTAL PRICE</div>
             </div>
-
-            <div class="bag-contents">
+            <div class="cartContents">
+                 <!-- CONTENTS 1 -->
+                 <!-- <div class="bag-contents">
                 <div class="bag-products">
                     <div class="bag-product">
                         <div class="product-description">
@@ -45,22 +46,186 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="product-quantity-update">
-                            <div class="qnty-edit">
-                                input
-                            </div>
-                            <div class=>Hello</div>
+                        <div>
+                                <div class="product-quantity-update">
+                                    <div class="qnty-edit">
+                                        <select id="ProductsNumb">
+                                            <option value="1" selected>1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                          </select>
+                                    </div>
+                                    <div class="priceInfo">
+                                        <span class="unitPrice">UNIT PRICE</span><br>
+                                        <span class="unitPriceAmount">@ <span class="amountPrice"></span> <span class="currency">$</span>5555</span>
+                                    </div>
+                                    
+                                </div>
+                               <p>
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> Free gift package?
+                               </p> 
                         </div>
-                        <div class="product-total-prce">Total Price</div>
+                        <div class="product-total-price">
+                            <span class="currency">$</span><span class="amount">3434</span>
+                            
+                        </div>
                     </div>
+                    
 
                 </div>
 
-            </div>
+                 </div> -->
+             
+                 <!-- CONTENTS 2 -->
+                 <!-- <div class="bag-contents">
+                <div class="bag-products">
+                    <div class="bag-product">
+                        <div class="product-description">
+                            <div class="product-image"><img src="imgs/flat_blue0.jpg" alt="product-image" width="110%"></div>
+                            <div class="bag-info">
+                                <p>St. Jean Stripe Sankaty Polo</p>
+                                <p><span class="bolden">Style:</span> 
+                                    1G010673 
+                                    <span class="bolden">Color:</span> Stripe Hammerhead
+                                </p>
+                                <p><span class="bolden">Size: </span>XXL
+                                </p>
+                                <p class="edit-area">
+                                    <a href="">Edit</a> | <a href="">Move to Wishlist </a>| <a href="">Remove</a> 
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                                <div class="product-quantity-update">
+                                    <div class="qnty-edit">
+                                        <select id="ProductsNumb">
+                                            <option value="1" selected>1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                          </select>
+                                    </div>
+                                    <div class="priceInfo">
+                                        <span class="unitPrice">UNIT PRICE</span><br>
+                                        <span class="unitPriceAmount">@ <span class="amountPrice"></span> <span class="currency">$</span>5555</span>
+                                    </div>
+                                    
+                                </div>
+                               <p>
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> Free gift package?
+                               </p> 
+                        </div>
+                        <div class="product-total-price">
+                            <span class="currency">$</span><span class="amount">3434</span>
+                            
+                        </div>
+                    </div>
+                    
 
+                </div>
+
+                 </div> -->
+             
+                 <!-- CONTENTS 3 -->
+                 <!-- <div class="bag-contents">
+                <div class="bag-products">
+                    <div class="bag-product">
+                        <div class="product-description">
+                            <div class="product-image"><img src="imgs/flat_blue0.jpg" alt="product-image" width="110%"></div>
+                            <div class="bag-info">
+                                <p>St. Jean Stripe Sankaty Polo</p>
+                                <p><span class="bolden">Style:</span> 
+                                    1G010673 
+                                    <span class="bolden">Color:</span> Stripe Hammerhead
+                                </p>
+                                <p><span class="bolden">Size: </span>XXL
+                                </p>
+                                <p class="edit-area">
+                                    <a href="">Edit</a> | <a href="">Move to Wishlist </a>| <a href="">Remove</a> 
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                                <div class="product-quantity-update">
+                                    <div class="qnty-edit">
+                                        <select id="ProductsNumb">
+                                            <option value="1" selected>1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                          </select>
+                                    </div>
+                                    <div class="priceInfo">
+                                        <span class="unitPrice">UNIT PRICE</span><br>
+                                        <span class="unitPriceAmount">@ <span class="amountPrice"></span> <span class="currency">$</span>5555</span>
+                                    </div>
+                                    
+                                </div>
+                               <p>
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> Free gift package?
+                               </p> 
+                        </div>
+                        <div class="product-total-price">
+                            <span class="currency">$</span><span class="amount">3434</span>
+                            
+                        </div>
+                    </div>
+                    
+
+                </div>
+
+                 </div> -->
+
+            </div>
         </div>
-        <div class="cartList">
-            <aside class="order-summary">
+        <div class="order-summary">
+            <div class="head">
+                <p>Order Summary</p>
+                <span><span class="cart-count"></span> items</span>
+            </div>
+            <div class="body">
+                <div class="calculation">
+                    <div>Subtotal</div>
+                    <div class="subtotalAmount"></div>
+                </div>
+                <div class="calculation">
+                    <div>Discount</div>
+                    <div class="discount">0%</div>
+                </div>
+                <div class="calculation">
+                    <div>ESTIMATED TOTAL*</div>
+                    <div class="estimatedTotal"></div>
+                </div>
+                <div class="promotion">
+                    <div>
+                        <input type="text" name="promo-code" id="promo-code" placeholder="Enter promo code">
+                    </div>
+                    <div>
+                        <input type="button" value="Apply">
+                    </div>
+                </div>
+                
+            </div>
+            <!-- <aside class="order-summary">
 				<div class="head">
 					<h3>Order Summary</h3>
 					<span><span data-var="cart-count"></span> items total</span>
@@ -112,9 +277,10 @@
 						<button>Checkout</button>
 					</div>
 				</div>
-			</aside>
+			</aside> -->
         </div>
         
     </div>
+    <script src="scripts/cartstyle.js"></script>
 </body>
 </html>

@@ -137,6 +137,44 @@ for(let i in selectElements){
 }
 
 productQuantityUpdate(selectElements);
+
+let removeProduct = document.querySelectorAll('p.edit-area > a:nth-child(3)');
+removeProduct.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        let contents = e.target.parentElement.parentElement.children;
+        let pName = contents[0].innerText;
+        let pStyle = contents[1].innerText.slice(7,13);
+        let pColor = contents[1].innerText.slice(21);
+        let pSize = contents[2].innerText.slice(5);
+    
+        let pIndex = myCart.findIndex(x =>{
+            return (x.productName === pName && 
+                x.productStyle === pStyle && 
+                x.productColor === pColor && 
+                x.productSize.trim() === pSize.trim()
+            )
+        } );
+    
+        if(pIndex > -1){
+            myCart.splice(pIndex, 1);
+            localStorage['myCart'] = JSON.stringify(myCart);
+            document.querySelector('div.cartContents').innerHTML = '';
+            generateHTML(myCart);
+            document.querySelector('div.calculation > div.estimatedTotal').innerHTML = '';
+            document.querySelector('div.calculation > div.subtotalAmount').innerHTML = '';
+            itemsQuantity = 0;
+            subTotal = 0;
+            
+            getTotalItems();
+            getSubTotal();
+    
+        }
+        
+    }, false);
+
+})
+
     
 }
 
@@ -177,6 +215,8 @@ const productQuantityUpdate = selectElements => {
             }
               
         }, false);
+
+        
     }
 }
 

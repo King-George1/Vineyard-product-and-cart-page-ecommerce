@@ -110,11 +110,12 @@ main {
   width: 100%;
   height: 100%;
   position: fixed;
+  /* background-color: red; */
   background: rgba(0, 0, 0, 0.68);
   display: none;
   top: 0;
 }
-.overlay.show {
+.show {
   display: block;
 }
 .prod-details-wrap {
@@ -244,6 +245,7 @@ aside.mini-cart {
   transition: right ease-out 300ms;
   z-index: 10;
 }
+
 
 aside.mini-cart div>p:nth-child(2):hover{
   cursor: pointer;
@@ -470,3 +472,5 @@ main.cart-page table.summary td {
 div.info + div.button-set{
   margin-top: 5%;
 }
+
+

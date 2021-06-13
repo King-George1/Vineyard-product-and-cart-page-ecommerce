@@ -12,13 +12,15 @@
 				"text": "Bright Peach",
                 "imgloc0": "imgs/bright_peach0.jpg",
                 "imgloc1": "imgs/bright_peach1.jpg",
-                "imgloc2":"imgs/bright_peach2.jpg"
+                "imgloc2":"imgs/bright_peach2.jpg",
+				"imgloc3": "imgs/bright_peach0.jpg"
 			},
 			{
 				"text": "Hull Blue",
                 "imgloc0": "imgs/hull_blue0.jpg",
                 "imgloc1": "imgs/hull_blue1.jpg",
-                "imgloc2":"imgs/hull_blue2.jpg"
+                "imgloc2":"imgs/hull_blue2.jpg",
+				"imgloc3": "imgs/hull_blue0.jpg"
 			},
 			{
 				"text": "Flats Blue",
@@ -45,7 +47,8 @@
 				"text": "Light Gray Heather",
                 "imgloc0": "imgs/light_gray_heather0.jpg",
                 "imgloc1": "imgs/light_gray_heather1.jpg",
-                "imgloc2":"imgs/light_gray_heather2.jpg"
+                "imgloc2":"imgs/light_gray_heather2.jpg",
+				"imgloc3": "imgs/light_gray_heather0.jpg"
 			}
 		]
 	}

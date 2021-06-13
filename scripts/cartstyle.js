@@ -142,45 +142,50 @@ let removeProduct = document.querySelectorAll('p.edit-area > a:nth-child(3)');
 removeProduct.forEach(item => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
-        let contents = e.target.parentElement.parentElement.children;
-        let pName = contents[0].innerText;
-        let pStyle = contents[1].innerText.slice(7,13);
-        let pColor = contents[1].innerText.slice(21);
-        let pSize = contents[2].innerText.slice(5);
-    
-        let pIndex = myCart.findIndex(x =>{
-            return (x.productName === pName && 
-                x.productStyle === pStyle && 
-                x.productColor === pColor && 
-                x.productSize.trim() === pSize.trim()
-            )
-        } );
-    
+        let contents = e.target.parentElement.parentElement.children;    
+        let pIndex = extractText(contents);  
         if(pIndex > -1){
             myCart.splice(pIndex, 1);
             localStorage['myCart'] = JSON.stringify(myCart);
-            document.querySelector('div.cartContents').innerHTML = '';
-            generateHTML(myCart);
-            document.querySelector('div.calculation > div.estimatedTotal').innerHTML = '';
-            document.querySelector('div.calculation > div.subtotalAmount').innerHTML = '';
-            itemsQuantity = 0;
-            subTotal = 0;
-            
-            getTotalItems();
-            getSubTotal();
-    
+            handleReloading();    
         }
         
     }, false);
 
-})
-
-    
+})  
 }
 
 
 let first = document.querySelector('div.promotion div input[type="button"]');
 first.addEventListener('click', applyingPromoCode,false);
+
+const handleReloading = _ => {
+    document.querySelector('div.cartContents').innerHTML = '';
+    generateHTML(myCart);
+    document.querySelector('div.calculation > div.estimatedTotal').innerHTML = '';
+    document.querySelector('div.calculation > div.subtotalAmount').innerHTML = '';
+    itemsQuantity = 0;
+    subTotal = 0;
+    
+    getTotalItems();
+    getSubTotal();
+
+}
+
+const extractText = element => {
+    let pName = element[0].innerText;
+        let pStyle = element[1].innerText.slice(7,13);
+        let pColor = element[1].innerText.slice(21);
+        let pSize = element[2].innerText.slice(5);
+        let pIndex = myCart.findIndex(x =>{
+            return (x.productName === pName && 
+                    x.productStyle === pStyle && 
+                    x.productColor === pColor && 
+                    x.productSize.trim() === pSize.trim()
+                );
+            } );
+            return pIndex; 
+}
 
 const productQuantityUpdate = selectElements => {
     for(let i of selectElements){
@@ -189,29 +194,11 @@ const productQuantityUpdate = selectElements => {
             let newQuantity = targetedElement.options[targetedElement.selectedIndex].value;
             let containerElement = targetedElement.parentElement.parentElement.parentElement.previousElementSibling;
             let contents = containerElement.children[1].children;
-            let pName = contents[0].innerText;
-            let pStyle = contents[1].innerText.slice(7,13);
-            let pColor = contents[1].innerText.slice(21);
-            let pSize = contents[2].innerText.slice(5);
-            let pIndex = myCart.findIndex(x =>{
-                return (x.productName === pName && 
-                    x.productStyle === pStyle && 
-                    x.productColor === pColor && 
-                    x.productSize.trim() === pSize.trim()
-                )
-            } ) 
+            let pIndex = extractText(contents); 
             if(pIndex > -1){
                 myCart[pIndex].productQuantity = newQuantity;
                 localStorage['myCart'] = JSON.stringify(myCart);
-                document.querySelector('div.cartContents').innerHTML = '';
-                generateHTML(myCart);
-                document.querySelector('div.calculation > div.estimatedTotal').innerHTML = '';
-                document.querySelector('div.calculation > div.subtotalAmount').innerHTML = '';
-                itemsQuantity = 0;
-                subTotal = 0;
-                
-                getTotalItems();
-                getSubTotal();
+                handleReloading();
             }
               
         }, false);

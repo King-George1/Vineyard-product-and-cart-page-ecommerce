@@ -8,7 +8,8 @@ let quantity = 1;
     product_name = 'BeachWood Hoodie',
     price = 128.00,
     product_imageUrl = 'url(imgs/flat_blue0.jpg)',
-    productID = 'PROD-1';
+    productID = 'PROD-1',
+    cartImageUrl = 'imgs/flat_blue0.jpg';
     
 
     //Event Handler for mouse hover
@@ -69,6 +70,7 @@ const selectAndChangeImages = (selector, targeted, clickedEvent) => {
         product_name = products[1];
         price = products[2]['amount'];
         productID = products[3];
+        // cartImageUrl = products[4]
         
     });
 }
@@ -86,6 +88,7 @@ const changeImagesUrl = (data, clickedEvent) =>{
       document.querySelector('div.prod-img-wrap > div').style.backgroundImage =  `url(${data[0][(urlKeys[0])]})`;
       if(clickedEvent){
         product_imageUrl = `url(${data[0][(urlKeys[0])]})`;
+        cartImageUrl = `${data[0][(urlKeys[0])]}`;
       }
       
 
@@ -98,33 +101,73 @@ const changeImagesUrl = (data, clickedEvent) =>{
 document.querySelector('button.ctrlAdd').addEventListener('click',()=>{
     let target = document.querySelector('div.quantity-selector input');
     let value = parseInt(target.value);
-    value++;
+    if(value < 10){
+        value++;
+    }else if(value > 10){
+        value = value;
+    }
+    
     target.value = value;
     quantity = value;
     
 },false);
 
+//Event Handler for the Input button
+let inputElement = document.querySelector('input#quantity-field')
+inputElement.addEventListener('focus', () => {
+    onkeypress = (event) =>{
+        if((isNaN(String.fromCharCode(event.keyCode)) || event.keyCode === 32) || inputElement.value.length > 1){
+            return false;
+        }
+        
+    }
+        
+}, false);
+
+inputElement.addEventListener('blur', () => {
+    let target = document.querySelector('input#quantity-field');
+    let value = parseInt(target.value);
+    quantity = value;
+}, false);
+
 //Event Handler for the Subtraction button 
 document.querySelector('button.ctrlSub').addEventListener('click',()=>{
     let target = document.querySelector('div.quantity-selector input');
     let value = parseInt(target.value);
-    if(value > 1){
+    if(value > 1 && value <= 10){
         value--;
     }
-    else{
+    else if(value > 10){
+        value = 10;
+    }else{
         value = 1;
-    } 
+    }
     target.value = value;  
     quantity = value;
 },false);
 
+const getSubTotal = () =>{
+    let cartContents = JSON.parse(localStorage.getItem('myCart'));
+    let subTotal = 0;
+    for(let i of cartContents){
+       subTotal += i.productQuantity * i.productPrice;
+    }
+    document.querySelector('div.additional_items + div.info > span').innerHTML = `$${subTotal}`;
+}
+
+
 document.getElementById('add-to-cart-btn').addEventListener('click', ()=>{
      if(!size){
         window.alert("Select Size");
-    }else{
+    }
+    else if(quantity > 10){
+        window.alert("Product quantity must be less than or equal to 10");
+    }
+    else{
         document.querySelector('aside.mini-cart').classList.add('show');
         loadMiniCart();
         updateCart();
+        getSubTotal();
 
     }
     
@@ -144,8 +187,9 @@ async function fetchData(url, color){
         const cost = data.price;
         const products = data.colors;
         const productID = data.id;
+        const productImage = data.colors[3]["imgloc0"];
         let singleProduct = products.filter(product => product.text === color );
-        return [singleProduct,productName,cost,productID];
+        return [singleProduct,productName,cost,productID, productImage];
     }
     catch(error){
         console.log(error);
@@ -153,15 +197,16 @@ async function fetchData(url, color){
     
 } 
 
-let sizeArray = Array.from(document.querySelectorAll('span.sz span'));
+let sizeArray = Array.from(document.querySelectorAll('span.sz'));
 sizeArray.forEach(element => {
     element.addEventListener('click', (e) => {
         size = e.target.textContent;
         sizeArray.forEach(el => {
-            el.parentElement.style.border = '2px solid white';
+            el.style.border = '2px solid white';
+            el.style.background = '#f2f2f2';
         })
         document.querySelector('span.select_size').innerHTML = e.target.textContent;
-        e.target.parentElement.style.border = '2px solid yellow';
+        e.target.style.background = '#002B5C';
     }, false);
 })
 
@@ -183,7 +228,8 @@ const updateCart = () => {
         productColor: color,
         productPrice: price,
         productSize: size,
-        productQuantity: quantity
+        productQuantity: quantity,
+        cartImage : cartImageUrl
     }
     let cartStorage = [];
     if(localStorage.getItem('myCart') !== null){

@@ -40,6 +40,7 @@ const getTotalItems = () => {
     }
     document.querySelector('div.cart > span.cart-count').innerHTML = itemsQuantity;
     document.querySelector('div.head > span > span.cart-count').innerHTML = itemsQuantity;
+    document.querySelector('h1 span.cartItems').innerHTML = itemsQuantity;
  }
 
  const getSubTotal = () =>{
@@ -76,7 +77,7 @@ const generateHTML = cartContent =>{
         <div class="bag-products">
             <div class="bag-product">
                 <div class="product-description">
-                    <div class="product-image"><img src="imgs/flat_blue0.jpg" alt="product-image" width="110%"></div>
+                    <div class="product-image"><img src="${content.cartImage}" alt="product-image" width="110%"></div>
                     <div class="bag-info">
                         <p>${content.productName}</p>
                         <p><span class="bolden">Style:</span> 
@@ -130,21 +131,14 @@ const generateHTML = cartContent =>{
         `   
     }
 
-   
-
+    let selectElements = Array.from(document.querySelectorAll('select'));
+for(let i in selectElements){
+    selectElements[i].selectedIndex = myCart[i]['productQuantity'] - 1;
+}
     
 }
 
-// const updateProductQuantity = (cartArrays) =>{
-//     let quantityArrays = cartArrays.map(x => x.productQuantity);
-//     let selectArrays = Array.from(document.querySelectorAll('#productsNumb'));
-//     console.log(selectArrays);
-//     for(let i in selectArrays){
-//         console.log(selectArrays[i])
-//         selectArrays[i].selectedIndex = 8; //quantityArrays[i];
-//         // console.log(quantityArrays[i]);
-//     }
-// }
+
 let first = document.querySelector('div.promotion div input[type="button"]');
 first.addEventListener('click', applyingPromoCode,false);
 

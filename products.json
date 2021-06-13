@@ -5,7 +5,7 @@
 		"description": "A super comfortable hoodie is a summertime essential. Made from 100% ultra-soft cotton, our Beachwood Hoodie is the layer you'll want to wear for early morning dog walks and beach bonfires by the ocean",
 		"rating": 5,
 		"image": "prod-img-1.jpg",
-		"price": { "amount": "128.00", "currency": "₵" },
+		"price": { "amount": "128.00", "currency": "$" },
 		"sizes": ["XS","X","M","L","XL","XXL"],
 		"colors": [
 			{

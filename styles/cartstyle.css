@@ -163,9 +163,26 @@ div.promotion div:nth-child(2) > input{
     background: #002B5C;
     color: white;
     border: 1px solid #002B5C;
-    border-radius: 10%;
+    border-radius: 50px;
     font-weight: 900;
     
+}
+
+div.promotion + div > a > input{
+    width: 90%;    
+    margin-top: 8%;
+    margin-left: 12px;
+    height: 40px;
+    color: white;
+    font-weight:900;
+    background: #D53C56;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+div.promotion + div > a > input:hover{
+    cursor: pointer;
 }
 
 div.promotion div:nth-child(2) > input:hover{
@@ -175,4 +192,12 @@ div.promotion div:nth-child(2) > input:hover{
 div.promotion input::placeholder{
     color: rgb(165, 157, 157);
     font-size: 0.9rem;
+}
+
+h1 span.cartItems{
+    background: #002B5C;
+    border-radius: 50%;
+    height: 100%;
+    color: white;
+    font-weight: 900;
 }

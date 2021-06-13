@@ -36,7 +36,7 @@ const applyPromoToCode = () => {
 const getTotalItems = () => {
     let cartContents = JSON.parse(localStorage.getItem('myCart'));
     for(let i of cartContents){
-        itemsQuantity += i.productQuantity;
+        itemsQuantity += parseInt(i.productQuantity);
     }
     document.querySelector('div.cart > span.cart-count').innerHTML = itemsQuantity;
     document.querySelector('div.head > span > span.cart-count').innerHTML = itemsQuantity;
@@ -46,7 +46,7 @@ const getTotalItems = () => {
  const getSubTotal = () =>{
      let cartContents = JSON.parse(localStorage.getItem('myCart'));
      for(let i of cartContents){
-        subTotal += i.productQuantity * i.productPrice;
+        subTotal += parseInt(i.productQuantity) * parseInt(i.productPrice);
      }
      let subTotalCont = document.querySelector('div.calculation > div.subtotalAmount');
      subTotalCont.innerHTML += `$${subTotal}`;
@@ -135,10 +135,48 @@ const generateHTML = cartContent =>{
 for(let i in selectElements){
     selectElements[i].selectedIndex = myCart[i]['productQuantity'] - 1;
 }
+
+productQuantityUpdate(selectElements);
     
 }
 
 
 let first = document.querySelector('div.promotion div input[type="button"]');
 first.addEventListener('click', applyingPromoCode,false);
+
+const productQuantityUpdate = selectElements => {
+    for(let i of selectElements){
+        i.addEventListener('change', (e) =>{
+            let targetedElement = e.target;
+            let newQuantity = targetedElement.options[targetedElement.selectedIndex].value;
+            let containerElement = targetedElement.parentElement.parentElement.parentElement.previousElementSibling;
+            let contents = containerElement.children[1].children;
+            let pName = contents[0].innerText;
+            let pStyle = contents[1].innerText.slice(7,13);
+            let pColor = contents[1].innerText.slice(21);
+            let pSize = contents[2].innerText.slice(5);
+            let pIndex = myCart.findIndex(x =>{
+                return (x.productName === pName && 
+                    x.productStyle === pStyle && 
+                    x.productColor === pColor && 
+                    x.productSize.trim() === pSize.trim()
+                )
+            } ) 
+            if(pIndex > -1){
+                myCart[pIndex].productQuantity = newQuantity;
+                localStorage['myCart'] = JSON.stringify(myCart);
+                document.querySelector('div.cartContents').innerHTML = '';
+                generateHTML(myCart);
+                document.querySelector('div.calculation > div.estimatedTotal').innerHTML = '';
+                document.querySelector('div.calculation > div.subtotalAmount').innerHTML = '';
+                itemsQuantity = 0;
+                subTotal = 0;
+                
+                getTotalItems();
+                getSubTotal();
+            }
+              
+        }, false);
+    }
+}
 
